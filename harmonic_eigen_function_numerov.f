@@ -41,6 +41,9 @@ c----- Numerov accumulate errors and diverges , work with only the given value h
         double precision function V(x)
         implicit double precision (a-h,o-z)
         g1=1.0d0
-        V=0.50d0*g1*x*x
+        V=0.50d0*g1*x*x 
+c ------ Change this potential funnction as required 
+c------ Warning , if you set potential to something like 
+c-----  v(x) = 1/x ish function set a=0.01 in the front code
         return 
         end  
