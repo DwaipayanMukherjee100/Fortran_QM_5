@@ -34,7 +34,6 @@ c--- orientation of + or - 1.
         xL_a=1.0d0
         vy=300.0d0
 c--- we are working in SI units, where we assume the total span of experiment is 4 meters
-        open(20,file="check.txt",status="unknown")
         dy=4.0d0/real(N)
         do i =1,N 
         y(i)=(i-1)*dy
