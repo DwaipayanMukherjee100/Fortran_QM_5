@@ -1,6 +1,6 @@
         program sg2
         implicit double precision (a-h,o-z)
-        do i=1,1000
+        do i=1,100
         xk=rand()
         if(xk.lt.0.5) then 
         z1=sg1(-1.0d0)
