@@ -2,11 +2,11 @@ c--- we shall now discretize TISE and use tridiagonalization
 c---- subroutine TQL2 to find eigen values and eigen functions
         program harmon_tql
         implicit double precision (a-h,o-z)
-        parameter (n=1000)
+        parameter (n=1100)
         dimension d(n),e(n),z(n,n),x(n)
         external v,tql2,pythag
-        a1=-5.0d0
-        b1=5.0d0
+        a1=-6.0d0
+        b1=6.0d0
         a=(b1-a1)/dble(n)
         x_min=-5 
         do i =1,n
@@ -28,17 +28,23 @@ c---- subroutine TQL2 to find eigen values and eigen functions
         write(*,*)d(i) 
         end do 
         open(10,file="tq_2.txt",status="unknown")
-        j1=6
+        j1=1
         do i=1,n
-        write(10,*)x(i),z(i,j1),z(i,j1+1),z(i,j1+2) 
+        write(10,*)x(i),z(i,j1),z(i,j1+1),z(i,j1+2),v(x(i)) 
         end do 
         stop 
         end 
         
         double precision function V(x)
         implicit double precision (x,v)
+        a=2.0d0
 c ------ just change this function and the x-limits accordingly
-        V=0.50d0*x*x
+        if(abs(x).lt.a) then
+        V=-5.0d0
+        else 
+        V=0.0d0
+        end if 
+        
         return
         end 
         
