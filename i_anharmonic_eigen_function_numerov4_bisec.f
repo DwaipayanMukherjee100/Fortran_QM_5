@@ -3,16 +3,17 @@
 c---- now we have created a function out of the last code which returns the end point of the 
 c ---- wavefunction , such that we can use bisection method to find it's eigen values 
 c----- i_anharmonic_eigen_function_numerov4_bisec.f
+        do k=0,8
         tol=1.0d-15
-        Emin=1.00d0
-        Emax=3.0d0  
+        Emin=0.00d0+k
+        Emax=2.0d0 +k  
         do i =1,10000 
         Emid=(Emin+Emax)/2.0d0
         z1=xnumerend(Emin,0)
         z2=xnumerend(Emid,0)
         if(abs(Emax-Emin).lt.tol) then 
         write(*,*)"Eigenvalue is : ",Emid
-        z2=xnumerend(Emid,1)
+        if(k.eq.0) z2=xnumerend(Emid,1)
         exit 
         
         else if (z1*z2 .lt. 0.0d0) then
@@ -20,7 +21,8 @@ c----- i_anharmonic_eigen_function_numerov4_bisec.f
         else
         Emin = Emid
         end if  
-        end do 
+        end do
+        end do  
         stop 
         end 
         double precision function xnumerend(E,nflag)
@@ -70,6 +72,6 @@ c---- simple reimann sum
         implicit double precision (a-h,o-z)
         g1=1.0d0
         beta=1.0d0
-        V=0.50d0*g1*x*x + 0.25*beta*x*x*x*x
+        V=0.50d0*g1*x*x + beta*x*x*x*x
         return 
         end  
