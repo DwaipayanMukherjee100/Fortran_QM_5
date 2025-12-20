@@ -6,7 +6,7 @@ c----- i_anharmonic_eigen_function_numerov4_bisec.f
         do k=0,8
         tol=1.0d-15
         Emin=0.00d0+k
-        Emax=2.0d0 +k  
+        Emax=2.0d0+k  
         do i =1,10000 
         Emid=(Emin+Emax)/2.0d0
         z1=xnumerend(Emin,0)
