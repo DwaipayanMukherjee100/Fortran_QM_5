@@ -19,8 +19,8 @@ c------ This is an attempt to code the stern gerlach experiment in 3d
 c------ here x(n,1) =x(n), x(n,2)=y(n),x(n,3)=z(n)
         dimension x(n,3),f(n,3),v(n,3),b(n)
 c----- let's say the particle is launched from origin and a mass=1 
-        vy=100.0d0 
-        L_magnet_y=10.0
+        vy=1000.0d0 
+        L_magnet_y=100.0
         t=L_magnet_y/vy 
         dt=t/dble(N)
         dy=L_magnet_y/dble(N)
@@ -31,7 +31,7 @@ c----- let's say the particle is launched from origin and a mass=1
         v(1,3)=0.0
         x(1,1)=0.0
         x(1,2)=0.0
-        x(1,3)=0.0
+        x(1,3)=-10.0
         do i=2,N 
         call force(f(i,1),f(i,2),f(i,3),x(i-1,1),
      & x(i-1,2),x(i-1,3),dx,dy,dz,spin)
@@ -58,7 +58,7 @@ c-----------
         bz2=0.0
         call Bfield(bz1,x,y,z+dz)
         call Bfield(bz2,x,y,z-dz)
-        Fz=0.50d0*spin*(bz1-bz2)/(2*dz)+rand()*5.0d0
+        Fz=0.50d0*spin*(bz1-bz2)/(2*dz)
         call Bfield(bz1,x,y+dy,z)
         call Bfield(bz2,x,y-dy,z)
         Fx=0.50d0*spin*(bz1-bz2)/(2*dx)
@@ -70,7 +70,7 @@ c-----------
 c ----------
         subroutine Bfield(Bz,x,y,z)
         implicit double precision (a-h,o-z)
-        Bz=10.0d0+50.0d0*z
+        Bz=100.0d0*z/((1.0d0+z**2))
         return
         end 
 
